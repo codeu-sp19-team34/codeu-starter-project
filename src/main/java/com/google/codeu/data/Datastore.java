@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-//last modified by sebrianne ferguson on 2/23/2019
 
 package com.google.codeu.data;
 
@@ -44,7 +43,7 @@ public class Datastore {
     messageEntity.setProperty("user", message.getUser());
     messageEntity.setProperty("text", message.getText());
     messageEntity.setProperty("timestamp", message.getTimestamp());
-    messageEntity.setProperty("recipient", message.getRecipient()); //added by Sebrianne
+    messageEntity.setProperty("recipient", message.getRecipient());
 
     datastore.put(messageEntity);
   }
