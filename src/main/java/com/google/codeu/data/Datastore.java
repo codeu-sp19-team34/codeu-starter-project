@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+//last modified by sebrianne ferguson on 2/23/2019
+
 package com.google.codeu.data;
 
 import com.google.appengine.api.datastore.DatastoreService;
@@ -42,6 +44,7 @@ public class Datastore {
     messageEntity.setProperty("user", message.getUser());
     messageEntity.setProperty("text", message.getText());
     messageEntity.setProperty("timestamp", message.getTimestamp());
+    messageEntity.setProperty("recipient", message.getRecipient()); //added by Sebrianne
 
     datastore.put(messageEntity);
   }
@@ -53,6 +56,7 @@ public class Datastore {
    *     message. List is sorted by time descending.
    */
   public List<Message> getMessages(String user) {
+
     List<Message> messages = new ArrayList<>();
 
     Query query =
@@ -68,7 +72,11 @@ public class Datastore {
         String text = (String) entity.getProperty("text");
         long timestamp = (long) entity.getProperty("timestamp");
 
-        Message message = new Message(id, user, text, timestamp);
+        //added by sebrianne
+        String recipient = (String) entity.getProperty("recipient");
+        Message message = new Message(id, user, text, timestamp, recipient);
+
+        //Message message = new Message(id, user, text, timestamp);
         messages.add(message);
       } catch (Exception e) {
         System.err.println("Error reading message.");

@@ -14,6 +14,8 @@
  * limitations under the License.
  */
 
+//last modified by Sebrianne Ferguson on 2/23/2019
+
 package com.google.codeu.servlets;
 
 import com.google.appengine.api.users.UserService;
@@ -77,10 +79,11 @@ public class MessageServlet extends HttpServlet {
 
     String user = userService.getCurrentUser().getEmail();
     String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
+    String recipient = request.getParameter("recipient"); // added by sebrianne
 
-    Message message = new Message(user, text);
+    Message message = new Message(user, text, recipient); //sebrianne added recipient
     datastore.storeMessage(message);
 
-    response.sendRedirect("/user-page.html?user=" + user);
+    response.sendRedirect("/user-page.html?user=" + recipient); //changed from + user to + recipient
   }
 }
