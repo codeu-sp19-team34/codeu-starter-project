@@ -109,7 +109,7 @@ public class Datastore {
         long timestamp = (long) entity.getProperty("timestamp");
         String recipient = (String) entity.getProperty("recipient");
 
-        Message message = new Message(id, user, text, timestamp, recipient); //this line was causing an error
+        Message message = new Message(id, user, text, timestamp, recipient); 
         messages.add(message);
       } catch (Exception e) {
         System.err.println("Error reading message.");
