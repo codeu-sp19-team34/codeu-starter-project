@@ -1,0 +1,34 @@
+
+// Get ?stats=XYZ parameter value
+const urlParams = new URLSearchParams(window.location.search);
+const parameterUsername = urlParams.get('stats');
+
+/** Fetches stats and add them to the page. */
+function fetchStats(){
+  const url = '/stats';
+  fetch(url)
+      .then((response) => {
+        return response.json();
+      })
+      .then((stats) => {
+        const statsContainer = document.getElementById('stats-container');
+        if (stats.length == 0) {
+          statsContainer.innerHTML = '<p>No messages on platform yet.</p>';
+        } else {
+          statsContainer.innerHTML = '';
+        }
+        const messageCountElement = buildStatElement('Message count: ' + stats.messageCount);
+        statsContainer.appendChild(messageCountElement);
+      });
+}
+
+function buildStatElement(statString){
+ const statElement = document.createElement('p');
+ statElement.appendChild(document.createTextNode(statString));
+ return statElement;
+}
+
+/** Fetch data and populate the UI of the page. **/
+function buildUI(){
+ fetchStats();
+}
