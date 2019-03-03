@@ -95,9 +95,9 @@ function buildMessageDiv(message) {
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
+  fetchAboutMe();
   showMessageFormIfViewingSelf();
   fetchMessages();
-  fetchAboutMe()
 }
 
 /** uses the fetch function to request the user's about data, and then adds it to the page. */
