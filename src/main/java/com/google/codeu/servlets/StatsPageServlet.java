@@ -14,7 +14,7 @@ import com.google.gson.JsonObject;
  * Handles fetching site statistics.
  */
 @WebServlet("/stats")
-public class StatsPageServlet extends HttpServlet{
+public class StatsPageServlet extends HttpServlet {
 
   private Datastore datastore;
 
@@ -29,8 +29,6 @@ public class StatsPageServlet extends HttpServlet{
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws IOException {
-
-      response.getOutputStream().println("application/json");
 
       int messageCount = datastore.getTotalMessageCount();
 
