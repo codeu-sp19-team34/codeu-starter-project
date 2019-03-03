@@ -1,5 +1,3 @@
-
-// Get ?stats=XYZ parameter value
 const urlParams = new URLSearchParams(window.location.search);
 const parameterUsername = urlParams.get('stats');
 
@@ -12,11 +10,8 @@ function fetchStats(){
       })
       .then((stats) => {
         const statsContainer = document.getElementById('stats-container');
-        if (stats.length == 0) {
-          statsContainer.innerHTML = '<p>No messages on platform yet.</p>';
-        } else {
-          statsContainer.innerHTML = '';
-        }
+        statsContainer.innerHTML = '';
+
         const messageCountElement = buildStatElement('Message count: ' + stats.messageCount);
         statsContainer.appendChild(messageCountElement);
       });
