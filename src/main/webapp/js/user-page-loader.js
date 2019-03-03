@@ -30,9 +30,9 @@ function setPageTitle() {
 }
 
 /**
- * Shows the message form if the user is logged in and viewing their own page.
+ * Shows the message form if the user is logged in and viewing a user page
  */
-function showMessageFormIfViewingSelf() {
+function showMessageForm() {
   fetch('/login-status')
       .then((response) => {
         return response.json();
@@ -94,7 +94,7 @@ function buildMessageDiv(message) {
 /** Fetches data and populates the UI of the page. */
 function buildUI() {
   setPageTitle();
-  showMessageFormIfViewingSelf();
+  showMessageForm();
   fetchMessages();
   fetchAboutMe()
 }
