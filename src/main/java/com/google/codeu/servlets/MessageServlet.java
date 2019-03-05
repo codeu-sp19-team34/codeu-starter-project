@@ -77,10 +77,12 @@ public class MessageServlet extends HttpServlet {
     }
 
     String user = userService.getCurrentUser().getEmail();
-    String text = Jsoup.clean(request.getParameter("text"), Whitelist.none());
+    String userEnteredContent = request.getParameter("text");
+    Whitelist whitelist = Whitelist.basicWithImages(); //allow a range of text nodes and to embed images
+    String sanitizedContent = Jsoup.clean(userEnteredContent, whitelist);
     String recipient = request.getParameter("recipient");
 
-    Message message = new Message(user, text, recipient);
+    Message message = new Message(user, sanitizedContent, recipient);
     datastore.storeMessage(message);
 
     response.sendRedirect("/user-page.html?user=" + recipient);
