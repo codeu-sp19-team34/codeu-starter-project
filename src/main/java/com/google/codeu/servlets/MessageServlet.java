@@ -75,18 +75,7 @@ public class MessageServlet extends HttpServlet {
       response.sendRedirect("/index.html");
       return;
     }
-
-    /*
-      String userText = Jsoup.clean(request.getParameter("text"), Whitelist.none());
-
-      String regex = "(https?://\\S+\\.(png|jpg))";
-      String replacement = "<img src=\"$1\" />";
-      String textWithImagesReplaced = userText.replaceAll(regex, replacement);
-
-      Message message = new Message(user, textWithImagesReplaced);
-      datastore.storeMessage(message);
-    */
-
+    
     String user = userService.getCurrentUser().getEmail();
     String userEnteredContent = request.getParameter("text");
     Whitelist whitelist = Whitelist.basicWithImages(); //allow a range of text nodes and to embed images
