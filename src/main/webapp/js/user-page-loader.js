@@ -49,7 +49,15 @@ function showMessageForm() {
 
 /** Fetches messages and add them to the page. */
 function fetchMessages() {
-  const url = '/messages?user=' + parameterUsername;
+  // const url = '/messages?user=' + parameterUsername;
+
+  // for translation: if a target language is specified, we append it to url
+  const parameterLanguage = urlParams.get('language');
+  let url = '/messages?user=' + parameterUsername;
+  if(parameterLanguage) {
+    url += '&language=' + parameterLanguage;
+  }
+
   fetch(url)
       .then((response) => {
         return response.json();
