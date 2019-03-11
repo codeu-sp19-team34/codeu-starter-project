@@ -49,7 +49,15 @@ function showMessageForm() {
 
 /** Fetches messages and add them to the page. */
 function fetchMessages() {
-  const url = '/messages?user=' + parameterUsername;
+  // const url = '/messages?user=' + parameterUsername;
+
+  // for translation: if a target language is specified, we append it to url
+  const parameterLanguage = urlParams.get('language');
+  let url = '/messages?user=' + parameterUsername;
+  if(parameterLanguage) {
+    url += '&language=' + parameterLanguage;
+  }
+
   fetch(url)
       .then((response) => {
         return response.json();
@@ -91,26 +99,43 @@ function buildMessageDiv(message) {
   return messageDiv;
 }
 
-/** Fetches data and populates the UI of the page. */
-function buildUI() {
-  setPageTitle();
-  showMessageForm();
-  fetchMessages();
-  fetchAboutMe()
-}
-
 /** uses the fetch function to request the user's about data, and then adds it to the page. */
 function fetchAboutMe(){
   const url = '/about?user=' + parameterUsername;
   fetch(url).then((response) => {
     return response.text();
-}).then((aboutMe) => {
+  }).then((aboutMe) => {
     const aboutMeContainer = document.getElementById('about-me-container');
-  if(aboutMe == ''){
-    aboutMe = 'This user has not entered any information yet.';
-  }
+    if(aboutMe == ''){
+      aboutMe = 'This user has not entered any information yet.';
+    }
 
-  aboutMeContainer.innerHTML = aboutMe;
+    aboutMeContainer.innerHTML = aboutMe;
 
-});
+  });
+}
+
+// for translation
+function buildLanguageLinks(){
+  const userPageUrl = '/user-page.html?user=' + parameterUsername;
+  const languagesListElement  = document.getElementById('languages');
+  languagesListElement.appendChild(createListItem(createLink(
+      userPageUrl + '&language=en', 'English')));
+  languagesListElement.appendChild(createListItem(createLink(
+      userPageUrl + '&language=zh', 'Chinese')));
+  languagesListElement.appendChild(createListItem(createLink(
+      userPageUrl + '&language=hi', 'Hindi')));
+  languagesListElement.appendChild(createListItem(createLink(
+      userPageUrl + '&language=es', 'Spanish')));
+  languagesListElement.appendChild(createListItem(createLink(
+      userPageUrl + '&language=ar', 'Arabic')));
+}
+
+/** Fetches data and populates the UI of the page. */
+function buildUI() {
+  setPageTitle();
+  buildLanguageLinks()
+  showMessageForm();
+  fetchMessages();
+  fetchAboutMe()
 }
