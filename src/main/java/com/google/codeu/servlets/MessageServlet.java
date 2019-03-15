@@ -87,7 +87,7 @@ public class MessageServlet extends HttpServlet {
       response.sendRedirect("/index.html");
       return;
     }
-    
+
     String user = userService.getCurrentUser().getEmail();
     String userEnteredContent = request.getParameter("text");
     Whitelist whitelist = Whitelist.basicWithImages(); //allow a range of text nodes and to embed images

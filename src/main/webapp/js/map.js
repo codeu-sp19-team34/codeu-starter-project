@@ -1,6 +1,6 @@
 // JavaScript functions for loading the map page
 
-function createMap() {
+function createLibraryMap() {
   const map = new google.maps.Map(document.getElementById('map'), {
     center: { lat: 37.422403, lng: -122.088073 },
     zoom: 15
