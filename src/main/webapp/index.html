@@ -16,23 +16,74 @@ limitations under the License.
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8">
-    <title>CodeU 2019 Starter Project</title>
-    <link rel="stylesheet" href="/css/main.css">
-    <script src="/js/navigation-loader.js"></script>
-  </head>
-  <body onload="addLoginOrLogoutLinkToNavigation();">
-    <nav>
-      <ul id="navigation">
-        <li><a href="/">Home</a></li>
-      </ul>
-    </nav>
-    <h1>CodeU Starter Project</h1>
-    <p>This is the CodeU starter project. Click the links above to login and visit your page.
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodeU 2019 Starter Project</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+  <script src="/js/navigation-loader.js"></script>
+</head>
+
+<body onload="addLoginOrLogoutLinkToNavigation();">
+
+  <section class="navigation">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="feed.html">Study Group Finder</a>
+      </div>
+      <nav>
+        <div class="nav-mobile">
+          <a id="nav-toggle" href="#!"><span></span></a>
+        </div>
+        <ul class="nav-list" id="navigation">
+          <li><a href="feed.html">Home</a></li>
+          <li><a href="messages.html">Messages</a></li>
+          <li><a href="#!">Groups</a>
+            <ul class="nav-dropdown">
+              <li><a href="find-groups.html">Find a Group</a></li>
+              <li><a href="groups.html">Your Groups</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <h1>CodeU Starter Project</h1>
+  <p>This is the CodeU starter project. Click the links above to login and visit your page.
     You can post messages on your page, and you can visit other user pages if you have
     their URL.</p>
-    <p>This is your code now! Feel free to make changes, and don't be afraid to get creative!
+  <p>This is your code now! Feel free to make changes, and don't be afraid to get creative!
     You could start by modifying this page to tell the world more about your team.</p>
-  </body>
+
+  <script>
+    (function ($) { // Begin jQuery
+      $(function () { // DOM ready
+        // If a link has a dropdown, add sub menu toggle.
+        $('nav ul li a:not(:only-child)').click(function (e) {
+          $(this).siblings('.nav-dropdown').toggle();
+          // Close one dropdown when selecting another
+          $('.nav-dropdown').not($(this).siblings()).hide();
+          e.stopPropagation();
+        });
+        // Clicking away from dropdown will remove the dropdown class
+        $('html').click(function () {
+          $('.nav-dropdown').hide();
+        });
+        // Toggle open and close nav styles on click
+        $('#nav-toggle').click(function () {
+          $('nav ul').slideToggle();
+        });
+        // Hamburger to X toggle
+        $('#nav-toggle').on('click', function () {
+          this.classList.toggle('active');
+        });
+      }); // end DOM ready
+    })(jQuery); // end jQuery
+  </script>
+
+</body>
+
 </html>
