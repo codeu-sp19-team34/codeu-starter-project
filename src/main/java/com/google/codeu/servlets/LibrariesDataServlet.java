@@ -20,48 +20,32 @@ import com.google.gson.JsonObject;
 public class LibrariesDataServlet extends HttpServlet {
 
   JsonArray librariesArray;
+  String root;
 
   @Override
   public void init() {
-    String sURL = "https://raw.githubusercontent.com/geoiq/gc_data/master/datasets/877.geojson";
-    JsonArray rootArray = new JsonArray();
-
-    try {
-      URL url = new URL(sURL);
-      URLConnection request = url.openConnection();
-      request.connect();
-
-      JsonParser jp = new JsonParser();
-      JsonElement root = jp.parse(new InputStreamReader((InputStream) request.getContent()));
-      JsonObject rootObj = root.getAsJsonObject();
-      rootArray = rootObj.getAsJsonArray("features");
-    } catch (MalformedURLException mex) {
-      // error handeling here
-    } catch (IOException iex) {
-      // error handeling here
-    }
-
+    librariesArray = new JsonArray();
     Gson gson = new Gson();
+    Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/california-pub-libraries.json"));
+    // while(scanner.hasNextLine()) {
+    root = scanner.nextLine();
+      // String[] cells = line.split(",");
+      //
+      // String state = cells[0];
+      // double lat = Double.parseDouble(cells[1]);
+      // double lng = Double.parseDouble(cells[2]);
 
-    // Each array element "pa" includes a JsonObject with desired key value pairs
-    for (JsonElement pa : rootArray) {
-      JsonObject propertyObj = pa.getAsJsonObject();
-      String libraryname = propertyObj.get("libraryname").getAsString();
-      String address = propertyObj.get("address").getAsString();
-      String city = propertyObj.get("city").getAsString();
-      String state = propertyObj.get("state").getAsString();
-      Double lat = propertyObj.get("lat").getAsDouble();
-      Double lng = propertyObj.get("lon").getAsDouble();
+      //librariesArray.add(gson.toJsonTree(new Library(libraryname, address, city, state, lat, lng)));
+    // }
 
-      librariesArray.add((gson.toJsonTree(new Library(libraryname, address, city, state, lat, lng))));
-    }
-
+    scanner.close();
   }
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
-    response.getOutputStream().println(librariesArray.toString());
+    response.getOutputStream().println(root);
+    //response.getOutputStream().println(librariesArray.toString());
   }
 
   private static class Library {
