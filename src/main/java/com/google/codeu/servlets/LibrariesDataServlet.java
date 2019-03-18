@@ -20,23 +20,32 @@ import com.google.gson.JsonObject;
 public class LibrariesDataServlet extends HttpServlet {
 
   JsonArray librariesArray;
-  String root;
 
   @Override
   public void init() {
     librariesArray = new JsonArray();
     Gson gson = new Gson();
     Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/california-pub-libraries.json"));
-    // while(scanner.hasNextLine()) {
-    root = scanner.nextLine();
-      // String[] cells = line.split(",");
-      //
-      // String state = cells[0];
-      // double lat = Double.parseDouble(cells[1]);
-      // double lng = Double.parseDouble(cells[2]);
+    String rootString = scanner.nextLine();
 
-      //librariesArray.add(gson.toJsonTree(new Library(libraryname, address, city, state, lat, lng)));
-    // }
+    JsonParser parser = new JsonParser();
+    JsonObject rootObj = (JsonObject) parser.parse(rootString);
+
+    JsonArray rootArray = rootObj.getAsJsonArray("features");
+
+    // Each array element "pa" includes a JsonObject with desired key value pairs
+    for (JsonElement pa : rootArray) {
+      JsonObject rootProp = pa.getAsJsonObject();
+      JsonObject propertyObj = rootProp.get("properties").getAsJsonObject();
+      String libraryname = propertyObj.get("libraryname").getAsString();
+      String address = propertyObj.get("address").getAsString();
+      String city = propertyObj.get("city").getAsString();
+      String state = propertyObj.get("state").getAsString();
+      Double lat = propertyObj.get("lat").getAsDouble();
+      Double lng = propertyObj.get("lon").getAsDouble();
+
+      librariesArray.add((gson.toJsonTree(new Library(libraryname, address, city, state, lat, lng))));
+    }
 
     scanner.close();
   }
@@ -44,8 +53,7 @@ public class LibrariesDataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
-    response.getOutputStream().println(root);
-    //response.getOutputStream().println(librariesArray.toString());
+    response.getOutputStream().println(librariesArray.toString());
   }
 
   private static class Library {
