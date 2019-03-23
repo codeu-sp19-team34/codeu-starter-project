@@ -69,4 +69,8 @@ public class Message {
   public void setText(String translatedText) {
     this.text = translatedText;
   }
+
+  public float getScore() {
+        return score;
+    }
 }
