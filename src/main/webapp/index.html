@@ -23,12 +23,13 @@ limitations under the License.
   <link rel="stylesheet" href="/css/main.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
   <script src="/js/navigation-loader.js"></script>
 </head>
 
 <body onload="addLoginOrLogoutLinkToNavigation();">
 
-  <section class="navigation">
+  <!-- <section class="navigation">
     <div class="nav-container">
       <div class="brand">
         <a href="feed.html">Study Group Finder</a>
@@ -49,14 +50,58 @@ limitations under the License.
         </ul>
       </nav>
     </div>
-  </section>
+  </section> -->
 
-  <h1>CodeU Starter Project</h1>
-  <p>This is the CodeU starter project. Click the links above to login and visit your page.
-    You can post messages on your page, and you can visit other user pages if you have
-    their URL.</p>
-  <p>This is your code now! Feel free to make changes, and don't be afraid to get creative!
-    You could start by modifying this page to tell the world more about your team.</p>
+  <main>
+    <div class="hero">
+      <div class="hero-left hero-item">
+        <h2 class="primary-heading"><i class="fas fa-chalkboard"></i>Form your study groups</h2>
+        <h2 class="primary-heading"><i class="fas fa-school"></i>Ace your next exam</h2>
+        <h2 class="primary-heading"><i class="fas fa-book"></i>Studying is now easier than ever</h2>
+      </div>
+      <div class="hero-right hero-item">
+        <a href="#!" class="login">Already a member? Sign in here.</a>
+        <div class="form-container">
+          <h2 class="primary-heading" style="margin-bottom: 0px !important">Register for Study Group Finder
+            Today <i style="margin-left: 5px;" class="fas fa-registered"></i></h2>
+          <div style="height: 2px; background-color: white; width: 15%; margin: 25px auto;"></div>
+          <form id="contact" action="" method="post">
+            <fieldset>
+              <input placeholder="First Name" type="text" tabindex="1" required autofocus>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Email" type="email" tabindex="2" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="Phone Number (optional)" type="tel" tabindex="3" required>
+            </fieldset>
+            <fieldset>
+              <input placeholder="University" type="url" tabindex="4" required>
+            </fieldset>
+            <fieldset>
+              <textarea placeholder="Subject" tabindex="5" required></textarea>
+            </fieldset>
+            <fieldset>
+              <a href="#" class="btn btn--white btn--animated">Sign Up</a>
+            </fieldset>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="home-footer">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Login</a>
+    </div>
+  </footer>
+  <div class="copyright">
+    CodeU Team34 | Copyright &copy; 2019 | All Rights Reserved
+  </div>
 
   <script>
     (function ($) { // Begin jQuery
