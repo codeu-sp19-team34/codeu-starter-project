@@ -1,0 +1,102 @@
+<!--
+Copyright 2019 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>CodeU 2019 Starter Project</title>
+  <link rel="stylesheet" href="/css/main.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+  <script src="/js/navigation-loader.js"></script>
+</head>
+
+<body onload="addLoginOrLogoutLinkToNavigation();">
+
+  <section class="navigation">
+    <div class="nav-container">
+      <div class="brand">
+        <a href="feed.html">Study Group Finder | Find a Group</a>
+      </div>
+      <nav>
+        <div class="nav-mobile">
+          <a id="nav-toggle" href="#!"><span></span></a>
+        </div>
+        <ul class="nav-list" id="navigation">
+          <li><a href="feed.html">Home</a></li>
+          <li><a href="messages.html">Messages</a></li>
+          <li><a href="#!">Groups</a>
+            <ul class="nav-dropdown">
+              <li><a href="find-groups.html">Find a Group</a></li>
+              <li><a href="groups.html">Your Groups</a></li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+
+  <main>
+    <div class="find-group-container">
+      
+    </div>
+  </main>
+
+  <footer>
+    <div class="home-footer">
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Policy</a>
+      <a href="#">Terms & Conditions</a>
+      <a href="#">Login</a>
+    </div>
+  </footer>
+  <div class="copyright">
+    CodeU Team34 | Copyright &copy; 2019 | All Rights Reserved
+  </div>
+
+  <script>
+    (function ($) { // Begin jQuery
+      $(function () { // DOM ready
+        // If a link has a dropdown, add sub menu toggle.
+        $('nav ul li a:not(:only-child)').click(function (e) {
+          $(this).siblings('.nav-dropdown').toggle();
+          // Close one dropdown when selecting another
+          $('.nav-dropdown').not($(this).siblings()).hide();
+          e.stopPropagation();
+        });
+        // Clicking away from dropdown will remove the dropdown class
+        $('html').click(function () {
+          $('.nav-dropdown').hide();
+        });
+        // Toggle open and close nav styles on click
+        $('#nav-toggle').click(function () {
+          $('nav ul').slideToggle();
+        });
+        // Hamburger to X toggle
+        $('#nav-toggle').on('click', function () {
+          this.classList.toggle('active');
+        });
+      }); // end DOM ready
+    })(jQuery); // end jQuery
+  </script>
+
+</body>
+
+</html>
