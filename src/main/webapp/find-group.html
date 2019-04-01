@@ -39,14 +39,9 @@ limitations under the License.
           <a id="nav-toggle" href="#!"><span></span></a>
         </div>
         <ul class="nav-list" id="navigation">
-          <li><a href="feed.html">Home</a></li>
-          <li><a href="messages.html">Messages</a></li>
-          <li><a href="#!">Groups</a>
-            <ul class="nav-dropdown">
-              <li><a href="find-groups.html">Find a Group</a></li>
-              <li><a href="groups.html">Your Groups</a></li>
-            </ul>
-          </li>
+          <li><a href="feed.html">Your Page</a></li>             <!––feed.html?-->
+          <li><a href="find-group.html">Find a Group</a></li>
+          <li><a href="index.html">Log out</a></li>
         </ul>
       </nav>
     </div>
@@ -54,7 +49,25 @@ limitations under the License.
 
   <main>
     <div class="find-group-container">
-      
+      <div class="find-group-form-container">
+        <h2 class="primary-heading" style="margin-bottom: 0px !important">Find a Group:
+          Today <i style="margin-left: 5px;" class="fas fa-registered"></i></h2>                 <!––don't understand here-->
+        <div style="height: 2px; background-color: white; width: 15%; margin: 25px auto;"></div>
+        <form id="contact" action="" method="post">
+          <fieldset>
+            <input placeholder="School" type="text" tabindex="1" required autofocus>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Class" type="text" tabindex="2" required>
+          </fieldset>
+          <fieldset>
+            <input placeholder="Name of Group (optional)" type="text" tabindex="3" required>
+          </fieldset>
+          <fieldset>
+            <a href="#" class="btn btn--white btn--animated">Search</a>
+          </fieldset>
+        </form>
+      </div>
     </div>
   </main>
 
@@ -64,7 +77,6 @@ limitations under the License.
       <a href="#">About</a>
       <a href="#">Policy</a>
       <a href="#">Terms & Conditions</a>
-      <a href="#">Login</a>
     </div>
   </footer>
   <div class="copyright">

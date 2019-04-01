@@ -3,3 +3,13 @@
     width: 100%;
     background-color: lightgray;
 }
+
+.find-group-form-container {
+  width: 30%;
+  height: 80vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
